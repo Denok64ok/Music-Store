@@ -16,8 +16,15 @@
 </template>
 
 <script setup>
-import { useProductStore } from '../store';
+import { useProductStore } from '../store'
+import { computed } from 'vue';;
 
 const store = useProductStore();
 const cart = store.cart;
+
+const totalPrice = computed(() => {
+    return cart.reduce((total, product) => {
+        return total + product.price;
+    }, 0);
+});
 </script>
